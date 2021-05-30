@@ -2,3 +2,5 @@
 *.o
 *.tar
 *.pdf
+!test/
+.vscode/
