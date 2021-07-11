@@ -5,7 +5,7 @@ INCLUDE := include
 .PHONY:all
 
 #all:$(subst .c,.exe,$(wildcard ))
-all:2.11-1.exe 2.11-2.exe 2.26.exe 2.44.exe 2.55.exe 2.56.exe 2.59.exe 2.60.exe 2.63.exe 2.64.exe 2.65.exe 2.66.exe 2.67.exe 2.68.exe 2.69.exe 2.70.exe 2.71.exe 2.72.exe
+all:2.11-1.exe 2.11-2.exe 2.26.exe 2.44.exe 2.55.exe 2.56.exe 2.59.exe 2.60.exe 2.63.exe 2.64.exe 2.65.exe 2.66.exe 2.67.exe 2.68.exe 2.69.exe 2.70.exe 2.71.exe 2.72.exe 2.73.exe 2.74.exe 2.75.exe 2.76.exe 2.77.exe 2.78.exe 2.79.exe
 
 2.11-1.exe:$(SRC)2.11-1.c $(LIB)ch2-1.c
 	cc $(DEBUG) -o 2.11-1.exe $(SRC)2.11-1.c $(LIB)ch2-1.c -I$(INCLUDE) 
@@ -44,6 +44,20 @@ all:2.11-1.exe 2.11-2.exe 2.26.exe 2.44.exe 2.55.exe 2.56.exe 2.59.exe 2.60.exe 
 2.71.exe:$(SRC)2.71.c
 	cc $(DEBUG) -o 2.71.exe $(SRC)2.71.c 
 2.72.exe:$(SRC)2.72.c
-	cc $(DEBUG) -o 2.72.exe $(SRC)2.72.c $(LIB)show_bytes.c -I$(INCLUDE) 
+	cc $(DEBUG) -o 2.72.exe $(SRC)2.72.c  
+2.73.exe:$(SRC)2.73.c
+	cc $(DEBUG) -o 2.73.exe $(SRC)2.73.c 
+2.74.exe:$(SRC)2.74.c
+	cc $(DEBUG) -o 2.74.exe $(SRC)2.74.c 
+2.75.exe:$(SRC)2.75.c
+	cc $(DEBUG) -o 2.75.exe $(SRC)2.75.c 
+2.76.exe:$(SRC)2.76.c
+	cc $(DEBUG) -o 2.76.exe $(SRC)2.76.c 
+2.77.exe:$(SRC)2.77.c
+	cc $(DEBUG) -o 2.77.exe $(SRC)2.77.c 
+2.78.exe:$(SRC)2.78.c
+	cc $(DEBUG) -o 2.78.exe $(SRC)2.78.c 
+2.79.exe:$(SRC)2.79.c
+	cc $(DEBUG) -o 2.79.exe $(SRC)2.79.c 
 clean:
 	rm -f *.exe
