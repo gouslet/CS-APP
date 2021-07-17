@@ -1,27 +1,20 @@
 /*
- * @Descripttion: 
- * @version: v0.1
- * @Author: Elon C
- * @Date: 2021-01-31 16:35:22
- * @LastEditors: Elon C
- * @LastEditTime: 2021-01-31 16:39:03
- * @FilePath: \CSAPP\code\netp\echo.c
+ * echo - read and echo text lines until client closes connection
  */
-/*
-读和回送文本行的echo函数
-*/
+/* $begin echo */
 #include "csapp.h"
 
-void echo(int connfd)
+void echo(int connfd) 
 {
-    size_t n;
-    char buf[MAXLINE];
+    size_t n; 
+    char buf[MAXLINE]; 
     rio_t rio;
 
     Rio_readinitb(&rio, connfd);
-    while ((n = Rio_readlineb(&rio, buf, MAXLINE)) != 0)
-    {
-        printf("server received %d bytes\n", (int)n);
-        Rio_writen(connfd, buf, n);
+    while((n = Rio_readlineb(&rio, buf, MAXLINE)) != 0) { //line:netp:echo:eof
+	printf("server received %d bytes\n", (int)n);
+	Rio_writen(connfd, buf, n);
     }
 }
+/* $end echo */
+

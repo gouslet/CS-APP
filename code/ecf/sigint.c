@@ -1,30 +1,20 @@
-/*
- * @Descripttion: 
- * @version: v0.1
- * @Author: Elon C
- * @Date: 2021-02-02 13:16:46
- * @LastEditors: Elon C
- * @LastEditTime: 2021-02-02 13:21:03
- * @FilePath: \CSAPP\code\ecf\sigint.c
- */
-/*8-30 用一个用信号处理程序捕获SIGINT信号的程序*/
+/* $begin sigint */
 #include "csapp.h"
 
-void sigint_handler(int sig) /*SIGINT handler*/
+void sigint_handler(int sig) /* SIGINT handler */   //line:ecf:sigint:beginhandler
 {
-    printf("Caught SIGINT!\n");
-    exit(0);
-}
+    printf("Caught SIGINT!\n");    //line:ecf:sigint:printhandler
+    exit(0);                      //line:ecf:sigint:exithandler
+}                                              //line:ecf:sigint:endhandler
 
-int main()
+int main() 
 {
-    /*Install the SIGINT handler*/
-    if (signal(SIGINT, sigint_handler) == SIG_ERR)
-    {
-        unix_error("signal error");
-    }
-
-    pause(); /*Wait for the receipt of a signal*/
-
+    /* Install the SIGINT handler */         
+    if (signal(SIGINT, sigint_handler) == SIG_ERR)  //line:ecf:sigint:begininstall
+	unix_error("signal error");                 //line:ecf:sigint:endinstall
+    
+    pause(); /* Wait for the receipt of a signal */  //line:ecf:sigint:pause
+    
     return 0;
 }
+/* $end sigint */

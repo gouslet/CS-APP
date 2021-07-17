@@ -1,21 +1,12 @@
-/*
- * @Descripttion: 
- * @version: v0.1
- * @Author: Elon C
- * @Date: 2021-02-02 20:53:39
- * @LastEditors: Elon C
- * @LastEditTime: 2021-02-02 22:36:14
- * @FilePath: \CSAPP\code\ecf\waitforsignal.c
- */
-/*8-41 用循环来等待信号。这段代码正确:但循环是一种浪费*/
+/* $begin waitforsignal */
 #include "csapp.h"
 
 volatile sig_atomic_t pid;
 
-void sigchild_handler(int s)
+void sigchld_handler(int s)
 {
     int olderrno = errno;
-    pid = waitpid(-1, NULL, 0);
+    pid = Waitpid(-1, NULL, 0);
     errno = olderrno;
 }
 
@@ -23,30 +14,31 @@ void sigint_handler(int s)
 {
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char **argv) 
 {
     sigset_t mask, prev;
 
-    Signal(SIGCHILD, sigchild_handler);
+    Signal(SIGCHLD, sigchld_handler);
     Signal(SIGINT, sigint_handler);
     Sigemptyset(&mask);
-    Sigaddset(&mask, SIGCHILD);
+    Sigaddset(&mask, SIGCHLD);
 
-    while (1)
-    {
-        Sigprocmask(SIG_BLOCK, &mask, &prev); /*Block SIGCHILD*/
-        if (Fork() == 0)                      /*Child*/
+    while (1) {
+        Sigprocmask(SIG_BLOCK, &mask, &prev); /* Block SIGCHLD */
+        if (Fork() == 0) /* Child */
             exit(0);
 
-        /*Parent*/
-        pid = 0;
-        Sigprocmask(SIG_SETMASK, &prev, NULL); /*Unblock SIGCHILD*/
-
-        /*Wait for SIGCHILD to be received(wastefull)*/
-        while (!pid)
+        /* Parent */
+        pid = 0; 
+        Sigprocmask(SIG_SETMASK, &prev, NULL); /* Unblock SIGCHLD */
+        
+        /* Wait for SIGCHLD to be received (wasteful) */
+        while (!pid) 
             ;
-        /*Do some work after receiving SIGCHILD*/
+
+        /* Do some work after receiving SIGCHLD */
         printf(".");
     }
     exit(0);
 }
+/* $end waitforsignal */
