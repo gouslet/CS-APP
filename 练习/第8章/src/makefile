@@ -9,7 +9,9 @@ PROGS :=  myecho\
 		8.4\
 		8.5\
 		snooze\
-		8.8
+		8.8\
+		8.11\
+		8.12
 
 
 all: $(PROGS)
