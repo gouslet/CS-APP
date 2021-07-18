@@ -1,6 +1,9 @@
-8.8 下面这个程序的输出是什么？
-```c
+#include <stdio.h>
+#include <signal.h>
+#include "csapp.h"
+
 volatile long counter=2;
+
 void handler1(int sig) {
     sigset_t mask , prev_mask;
     Sigfillset(&mask);
@@ -13,14 +16,14 @@ void handler1(int sig) {
 
 int main() {
     pid_t pid;
-    sigset_ t mask, prev mask;
+    sigset_t mask, prev_mask;
     printf("%ld", counter);
     fflush(stdout);
-    signal (SIGUSR1, handler1 ;
+    signal (SIGUSR1, handler1);
     if ((pid = Fork()) == 0) {
         while (1) {};
     }
-    Kill (pid, SIGUSR1) ;
+    Kill(pid, SIGUSR1) ;
     Waitpid(-1, NULL, 0);
     Sigfillset (&mask);
     Sigprocmask(SIG_BLOCK, &mask, &prev_mask); /* Block sigs */
@@ -29,8 +32,3 @@ int main() {
 
     exit(0);
 }
-```
-解：213
-- 父进程开始时打印"2"，然后创建子进程，子进程会陷入一个无限循环。然后父进程向子进程发送一个信号，并等待它终止。
-- 子进程捕获这个信号（中断这个无限循环），对计数器值（从初始值2) 减一，打印“1”，然后终止。
-- 在父进程回收子进程之后，它对计数器值（从初始值2) 加一，打印“3” 并且终止。

@@ -18,6 +18,7 @@ int main(int argc,char *argv[],char **envp) {
         unix_error("signal error");
 
     printf("Starting sleep...\n");
+    printf("\nStopping sleep...\n");
     snooze(atoi(argv[1]));
     return 0;
 }
