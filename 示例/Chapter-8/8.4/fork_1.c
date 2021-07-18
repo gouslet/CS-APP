@@ -27,6 +27,6 @@ int main(void)
     }
 
     //Parent
-    printf("parent: x=%d", --x);
+    printf("parent: x=%d\n", --x);
     exit(0);
 }

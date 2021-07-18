@@ -1,6 +1,5 @@
-*.exe
-*.o
-*.tar
-*.pdf
-!test/
-.vscode/
+*
+!*.c
+!*.h
+!makefile
+!.gitignore

@@ -1,7 +1,14 @@
 DEBUG := -g
-CFLAGS := -IE:\DIY\CS-APP\code
-all: $(subst .c,.exe,$(wildcard *.c))
+CFLAGS := -I../../../code/include -I.
+LDLIBS := -lpthread
+CSAPP_SRC := ../../../code/src
+CSAPP := csapp.c
 
-fork_1.exe: fork_1.c
-	cc $(DEBUG) -o $@  $< $(CFLAGS)
+PROGS :=  fork_1 waitpid1 waitpid2 shellex kill
 
+all: $(PROGS)
+
+$(PROGS): $(CSAPP_SRC)/$(CSAPP)
+
+clean:
+	rm -f $(PROGS) *~
