@@ -1,3 +1,4 @@
+/*一个简单 shell，这个shell是有缺陷的，因为它并不回收它的后台子进程。*/
 #include "csapp.h"
 #define MAXARGS 128
 
@@ -12,8 +13,8 @@ int main(int argc,char *argv[],char **envp) {
     while (1) {
     /* Read */
         printf("> ");
-        Fgets (cmdline, MAXLINE, stdin);
-        if (feof (stdin))
+        Fgets(cmdline, MAXLINE, stdin);
+        if (feof(stdin))
             exit(0);
 
         /* Evaluate */
@@ -62,7 +63,6 @@ int builtin_command(char **argv) {
 }
 
 /* parseline - Parse the command line and build the argv array */
-
 int parseline(char *buf, char **argv) {
     char *delim;
     int argc;
