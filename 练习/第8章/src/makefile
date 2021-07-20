@@ -1,5 +1,4 @@
-DEBUG := -g
-CFLAGS := -I../../../code/include -I.
+CFLAGS := -g -I../../../code/include -I.
 LDLIBS := -lpthread
 CSAPP_SRC := ../../../code/src
 CSAPP := csapp.c
@@ -11,17 +10,28 @@ PROGS :=  myecho\
 		snooze\
 		8.8\
 		8.11\
-		8.12
+		8.12\
+		8.13\
+		8.14\
+		8.15\
+		8.16\
+		8.22_test-1\
+		8.22_test-2
 
 
 all: $(PROGS)
 
 myecho: 8.6.c
 	# cc $(DEBUG) 8.6.c -o $@
-snooze: 8.7.c
-	cc $(DEBUG) 8.7.c $(CSAPP_SRC)/csapp.o snooze.o -o $@ $(CFLAGS) $(LDLIBS)
 
-$(PROGS): $(CSAPP_SRC)/csapp.o snooze.o
+snooze: 8.7.c
+	cc 8.7.c $(CSAPP_SRC)/csapp.o snooze.o -o $@ $(CFLAGS) $(LDLIBS)
+
+8.22.o: 8.22.c $(CSAPP_SRC)/csapp.o
+	# cc -o $@ $^ $(CFLAGS) $(LDLIBS)
+
+
+$(PROGS): $(CSAPP_SRC)/csapp.o snooze.o 8.22.o
 
 $(CSAPP_SRC)/csapp.o: $(CSAPP_SRC)/csapp.c
 

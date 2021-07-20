@@ -1,6 +1,5 @@
-8.13 下面程序的一种可能的输出是什么？
-```c
 #include "csapp.h"
+
 int main() {
     int x = 3;
     if (Fork() != 0)
@@ -8,10 +7,3 @@ int main() {
     printf("x=%d\n",--x);
     exit(0);
 }
-```
-解：
-```
-x=4
-x=3
-x=2
-```
