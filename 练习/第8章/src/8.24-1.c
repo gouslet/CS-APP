@@ -1,13 +1,4 @@
-8.24 修改图`8-18`中的程序，以满足下面两个条件：
-1) 每个子进程在试图写一个只读文本段中的位置时会异常终止。
-2) 父进程打印和下面所示相同（除了`PID`)的输出：
-```
-child 12255 terminated by signal 11: Segmentation fault
-child 12254 terminated by signal 11: Segmentation fault
-```
-提示：请参考`psignal(3)`的`man`页。
-
-```c
+/*使用waitpid函数不按照特定的顺序回收僵死子进程*/
 #include "csapp.h"
 #define N 20
 
@@ -16,7 +7,7 @@ int main() {
     pid_t pid;
 
     /* Parent creates N children */
-    for(i = 0;i < N;i++)
+    for(i = 0;i<N;i++)
         if ((pid = Fork()) == 0) {/* Child */
         int *p = NULL;
         *p = 1;
@@ -26,10 +17,8 @@ int main() {
     while ((pid = waitpid(-1, &status, 0)) > 0) {
         if (WIFEXITED(status))
             printf("child %d terminated normally with exit status=%d\n",pid, WEXITSTATUS(status));
-        else if(WIFSIGNALED(status)) {
-            fprintf(stderr,"child %d terminated by signal %d",pid, WTERMSIG (status));
-            psignal(WTERMSIG (status)," ");
-        }
+        else if(WIFSIGNALED(status))
+            printf("child %d terminated by signal %d:Segmentation fault\n",pid, WTERMSIG (status));
         else
             printf ("child %d terminated abnormally\n", pid);
     }
@@ -40,4 +29,3 @@ int main() {
 
         exit(0);
 }
-```

@@ -1,5 +1,5 @@
-下面的程序可能的输出序列是什么？
-```c
+#include "csapp.h"
+
 int main() {
     if (fork() == 0) {
         printf("a"); fflush(stdout);
@@ -11,7 +11,3 @@ int main() {
     printf("c"); fflush(stdout);
     exit(0);
 }
-```
-解：
-- bac
-- abc
