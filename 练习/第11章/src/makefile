@@ -3,7 +3,10 @@ LDLIBS := -lpthread -lm
 CSAPP_SRC := ../../../code/src
 CSAPP := csapp.c
 
-PROGS :=  11.2
+PROGS :=  11.2\
+			11.3\
+			11.4
+			# strcpy
 
 all: $(PROGS)
 
