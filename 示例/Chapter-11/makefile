@@ -3,7 +3,10 @@ LDLIBS := -lpthread
 CSAPP_SRC := ../../code/src
 CSAPP := csapp.c
 
-PROGS :=  hostinfo
+PROGS :=  hostinfo\
+		 echo_server\
+		 echo_client
+
 
 all: $(PROGS)
 
