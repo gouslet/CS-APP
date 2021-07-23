@@ -5,7 +5,9 @@ CSAPP := csapp.c
 
 PROGS :=  hostinfo\
 		 echo_server\
-		 echo_client
+		 echo_client\
+		 adder\
+		 tiny
 
 
 all: $(PROGS)
