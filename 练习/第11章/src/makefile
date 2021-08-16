@@ -5,7 +5,8 @@ CSAPP := csapp.c
 
 PROGS :=  11.2\
 			11.3\
-			11.4
+			11.4\
+			11.10
 			# strcpy
 
 all: $(PROGS)
